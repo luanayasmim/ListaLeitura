@@ -1,0 +1,17 @@
+﻿@*
+    A VIEW é responsável pela exibição das informações, além de ser quem recebe as requisições e mandar para a controller
+    o pedido feito.
+
+    --O Razor permite que se escreva uma mistura de código HTML e do lado do servidor usando o C#
+    
+*@
+
+<!--Importando a HomeModel para a View-->
+@model HomeModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="bg">
+    <h1 class="titulo">Lista de Livros da @Model.Nome</h1>
+</div>

@@ -1,0 +1,36 @@
+﻿@model LivroModel
+@{
+    ViewData["Title"] = "Adicionar";
+}
+<h1>Adicionar Novo Livro</h1>
+<form asp-controller="Livro" asp-action="Criar" method="post">
+    <div class="form-group">
+        <label>Título</label>
+        <!--O asp-for define onde o valor informado será atribuido-->
+        <input asp-for="NomeLivro" type="text" class="form-control" placeholder="Harry Potter e a Pedra Filosofal">
+        @Html.ValidationMessageFor(x=>x.NomeLivro)
+    </div>
+    <div class="form-group">
+        <label>Autor</label>
+        <input asp-for="NomeAutor" type="text" class="form-control" placeholder="J.K Rolling">
+        @Html.ValidationMessageFor(x=>x.NomeAutor)
+    </div>
+    <div class="form-group">
+        <label>Data de lançamento</label>
+        <input asp-for="DataLancamento" type="date" class="form-control" placeholder="26/06/1997">
+        @Html.ValidationMessageFor(x=>x.DataLancamento)
+    </div>
+    <div class="form-group">
+        <label>Número de Páginas</label>
+        <input asp-for="NumPaginas" type="number" class="form-control" placeholder="300">
+        @Html.ValidationMessageFor(x=>x.NumPaginas)
+    </div>
+    <div class="form-check">
+        <input asp-for="StatusLivro" type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Lido</label>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-success btn-block" asp-controller="Livro" asp-action="Criar">Adicionar</button>
+    <a role="button" class="btn btn-dark btn-block" asp-controller="Livro" asp-action="Index">Voltar</a>
+
+</form>

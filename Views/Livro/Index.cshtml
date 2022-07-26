@@ -1,0 +1,88 @@
+﻿@model List<LivroModel>
+@{
+    ViewData["Title"] = "Lista de Livros";
+}
+@*
+    Exibir em uma tabela as informções:
+        1) IdLivro
+        2) NomeLivro
+        3) NomeAutor
+        4) DataLancamento
+        5) NumPaginas
+        6) StatusLivro - Lido ou não lido
+        7) DataCadastro - Auto Increment - Pega a data e a hora que o livro foi inserido na lista
+*@
+<div class="text-center">
+
+    <div class="d-grid gap-2 d-md-flex justify-context-md-start">
+        <a role="button" class="btn btn-success" asp-controller="Livro" asp-action="Criar">Adicionar Livro</a>
+    </div>
+
+    <h1>Lista de Leitura</h1>
+
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <!--Mensagem de sucesso-->
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm" id="close-alert" arial-label="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <!--Mensagem de erro-->
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm" id="close-alert" arial-label="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+    <br />
+
+
+    <table id="tabelaLivros" class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Título</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Data de Lançamento</th>
+                <th scope="col">Número de Páginas</th>
+                <th scope="col">Status</th>
+                <th scope="col">Cadastrado em:</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var livro in Model)
+                {
+                    <tr>
+                        <th scope="row">@livro.Id</th>
+                        <td>@livro.NomeLivro</td>
+                        <td>@livro.NomeAutor</td>
+                        <td>@livro.DataLancamento</td>
+                        <td>@livro.NumPaginas</td>
+                        @if (livro.StatusLivro)
+                        {
+                            <td>Lido</td>
+                        }
+                        else
+                        {
+                            <td>Não Lido</td>
+                        }
+                        <td>@livro.DataCadastro</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                @* O asp-route-id armazena o dado da id e envia para outra página  *@
+                                <a role="button" class="btn btn-info" asp-route-id="@livro.Id" asp-controller="Livro" asp-action="Editar">Editar</a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@livro.Id" asp-controller="Livro" asp-action="ApagarConfirmacao">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
