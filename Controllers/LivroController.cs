@@ -117,6 +117,8 @@ namespace API_Livros.Controllers
         }
 
         //CSV Helper
+
+        //Importar
         public IActionResult Importar()
         {
             return View();
@@ -125,6 +127,14 @@ namespace API_Livros.Controllers
         {
             csvParser.ReadCSV(file);
             return RedirectToAction("Importar");
+        }
+
+        //Exportar
+        public IActionResult Exportar()
+        {
+            string path = "C:/Downloads";
+            csvParser.WriteCSV(path);
+            return RedirectToAction("Index");
         }
     }
 }

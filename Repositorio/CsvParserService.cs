@@ -42,6 +42,21 @@ namespace API_Livros.Repositorio
             }
         }
 
+        public void WriteCSV(string path)
+        {
+            List<LivroModel> livros = _livroRepositorio.BuscarTodos();
+            using (CsvWriter writer = new CsvWriter(livros))
+            {
+                writer.WriteHeader<LivroModel>();
+                writer.NextRecord();
+                foreach (LivroModel livro in livros)
+                {
+                    writer.WriteRecord<LivroModel>(livro);
+                    writer.NextRecord();
+                }
+            }
+        }
+
         //public void WriteCSVFile(string path, List<LivroModel> livros)
         //{
         //    using(StreamWriter streamWriter= new StreamWriter(path, false, new UTF8Encoding(true)))
