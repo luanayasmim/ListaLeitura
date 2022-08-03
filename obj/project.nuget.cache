@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "mosbvYLxIKksy4fN5pgsCTkdnA55PmK58qeY6TFPa6aX6wwQNdLK0bPWKPH8hxwL3uxpcrzKbbUfoWyP7y+urQ==",
+  "dgSpecHash": "BxA4/nZYk6ZWOgAK11hKQR3AMLSW3HSAQCI0xh5Vsv5xRHRNZZd7pPfkKxZhU/coxzkI+82OFyVqfmqo63Tacw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lylourenco\\source\\repos\\API_Livros\\API_Livros.csproj",
+  "projectFilePath": "C:\\Users\\lylourenco\\source\\repos\\ListaLeitura\\API_Livros.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\lylourenco\\.nuget\\packages\\csvhelper\\28.0.1\\csvhelper.28.0.1.nupkg.sha512",
     "C:\\Users\\lylourenco\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\lylourenco\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\lylourenco\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

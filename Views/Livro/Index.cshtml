@@ -18,6 +18,12 @@
         <a role="button" class="btn btn-success" asp-controller="Livro" asp-action="Criar">Adicionar Livro</a>
     </div>
 
+    <div class="d-grid gap-2 d-md-flex justify-content-end">
+        <a role="button" class="btn btn-outline-dark" asp-controller="Livro" asp-action="Importar">Importar Livros</a>
+        <a role="button" class="btn btn-outline-dark" asp-controller="Livro" asp-action="Exportar">Exportar Livros</a>
+    </div>
+
+
     <h1>Lista de Leitura</h1>
 
     @if (TempData["MensagemSucesso"] != null)

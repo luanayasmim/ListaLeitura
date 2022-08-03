@@ -1,5 +1,6 @@
 ﻿using API_Livros.Models;
 using API_Livros.Repositorio;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace API_Livros.Controllers
     public class LivroController : Controller
     {
         private readonly ILivroRepositorio _livroRepositorio;
+        private ICsvParserService csvParser;
+
         //Construtor da classe
         public LivroController(ILivroRepositorio livroRepositorio)
         {
@@ -113,5 +116,15 @@ namespace API_Livros.Controllers
 
         }
 
+        //CSV Helper
+        public IActionResult Importar()
+        {
+            return View();
+        }
+        public IActionResult UnicoArquivo(string file)
+        {
+            csvParser.ReadCSV(file);
+            return RedirectToAction("Importar");
+        }
     }
 }

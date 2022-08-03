@@ -1,0 +1,14 @@
+﻿@model IEnumerable<LivroModel>
+<div class="text-center">
+    <h2>Importar CSV:</h2>
+
+    <br />
+    <form method="post" asp-controller="Livro" asp-action="Importar" enctype="multipart/form-data">
+        <input type="file" name="file" value="" />
+        <button type="submit" asp-controller="Livro" asp-action="UnicoArquivo">Salvar</button>
+    </form>
+    <hr />
+    <br />
+
+    <a role="button" class="btn btn-dark btn-block" asp-controller="Livro" asp-action="Index">Voltar</a>
+</div>
