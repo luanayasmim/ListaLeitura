@@ -1,4 +1,5 @@
-﻿using API_Livros.Models;
+﻿using API_Livros.Mappers;
+using API_Livros.Models;
 using CsvHelper;
 using CsvHelper.Configuration;
 using System;
@@ -24,11 +25,14 @@ namespace API_Livros.Repositorio
             {
                 var config = new CsvConfiguration(CultureInfo.InvariantCulture)
                 {
+                    Delimiter = ",",
                     HasHeaderRecord = true,
                 };
 
                 using var reader = new StreamReader(path);
                 using var csv = new CsvReader(reader, config);
+                csv.Context.RegisterClassMap<LivroMap>();
+                //csv.ReadHeader();
                 var livros = csv.GetRecords<LivroModel>();
 
                 foreach (var livro in livros)
@@ -45,14 +49,17 @@ namespace API_Livros.Repositorio
         public void WriteCSV(string path)
         {
             List<LivroModel> livros = _livroRepositorio.BuscarTodos();
-            using (CsvWriter writer = new CsvWriter(livros))
+
+            using (var writer = new StreamWriter(path))
+
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
-                writer.WriteHeader<LivroModel>();
-                writer.NextRecord();
+                csv.WriteHeader<LivroModel>();
+                csv.NextRecord();
                 foreach (LivroModel livro in livros)
                 {
-                    writer.WriteRecord<LivroModel>(livro);
-                    writer.NextRecord();
+                    csv.WriteRecord<LivroModel>(livro);
+                    csv.NextRecord();
                 }
             }
         }

@@ -11,7 +11,7 @@ namespace API_Livros.Mappers
     {
         public LivroMap() 
         {
-            Map(m => m.Id).Name("Id");
+            //Map(m => m.Id).Name("Id");
             Map(m => m.NomeLivro).Name("NomeLivro");
             Map(m => m.NomeAutor).Name("NomeAutor");
             Map(m => m.DataLancamento).Name("DataLancamento");

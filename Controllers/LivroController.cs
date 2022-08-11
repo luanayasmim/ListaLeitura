@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,12 +13,14 @@ namespace API_Livros.Controllers
     public class LivroController : Controller
     {
         private readonly ILivroRepositorio _livroRepositorio;
-        private ICsvParserService csvParser;
+        private ICsvParserService _csvParser;
 
         //Construtor da classe
-        public LivroController(ILivroRepositorio livroRepositorio)
+        public LivroController(ILivroRepositorio livroRepositorio, ICsvParserService csvParser)
         {
             _livroRepositorio = livroRepositorio;
+            _csvParser = csvParser;
+
         }
         //Métodos GET
         public IActionResult Index()
@@ -117,23 +120,53 @@ namespace API_Livros.Controllers
         }
 
         //CSV Helper
-
-        //Importar
+        [HttpGet]
         public IActionResult Importar()
         {
             return View();
         }
-        public IActionResult UnicoArquivo(string file)
+
+        [HttpPost]
+        public async Task<IActionResult> Importar(FileModel file)
         {
-            csvParser.ReadCSV(file);
-            return RedirectToAction("Importar");
+            //file.FormFile.
+
+            var filePath = Path.GetTempFileName();
+
+            using (var stream = System.IO.File.Create(filePath))
+            {
+                await file.FormFile.CopyToAsync(stream);
+            }
+            _csvParser.ReadCSV(filePath);
+            return View();
+            //long size = files.Sum(f => f.Length); 
+            //foreach (var formFile in file.FormFile) 
+            //{ 
+            //    if (formFile.Length > 0) 
+            //    { 
+            //        var filePath = Path.GetTempFileName(); 
+                    
+            //        using (var stream = System.IO.File.Create(filePath)) 
+            //        { 
+            //            await formFile.CopyToAsync(stream); 
+            //        } 
+            //    } 
+            //}
+            //return Ok(new { count = files.Count, size });
         }
+
+        //public IActionResult UnicoArquivo(IFormFile file)
+        //{
+        //    csvParser.ReadCSV(file);
+        //    return RedirectToAction("Importar");
+        //}
+
 
         //Exportar
         public IActionResult Exportar()
         {
-            string path = "C:/Downloads";
-            csvParser.WriteCSV(path);
+            string path = @"C:\Users\lylourenco\Downloads\livroExportado.csv";
+            _csvParser.WriteCSV(path);
             return RedirectToAction("Index");
         }
     }

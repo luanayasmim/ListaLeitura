@@ -27,6 +27,7 @@ namespace API_Livros
             //services.AddEntityFrameworkSqlServer().AddDbContext<BancoContext>(o=>o.UseSqlServer(Configuration.GetConnectionString("DataBase")));
             services.AddEntityFrameworkSqlServer().AddDbContext<BancoContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DataBase")));
             services.AddScoped<ILivroRepositorio, LivroRepositorio>();
+            services.AddScoped<ICsvParserService, CsvParserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +49,7 @@ namespace API_Livros
             app.UseRouting();
 
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

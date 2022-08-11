@@ -1,14 +1,18 @@
-﻿@model IEnumerable<LivroModel>
+﻿@model FileModel
 <div class="text-center">
     <h2>Importar CSV:</h2>
 
-    <br />
-    <form method="post" asp-controller="Livro" asp-action="Importar" enctype="multipart/form-data">
-        <input type="file" name="file" value="" />
-        <button type="submit" asp-controller="Livro" asp-action="UnicoArquivo">Salvar</button>
+
+    <form enctype="multipart/form-data" method="post">
+        <dl> 
+        <dd> 
+            <input asp-for="FormFile" type="file">             
+            <span asp-validation-for="FormFile"></span>
+         </dd>     
+        </dl>     
+    <input class="btn" type="submit" value="Upload" /> 
     </form>
-    <hr />
-    <br />
+
 
     <a role="button" class="btn btn-dark btn-block" asp-controller="Livro" asp-action="Index">Voltar</a>
 </div>
