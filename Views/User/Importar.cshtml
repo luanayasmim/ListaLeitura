@@ -1,0 +1,18 @@
+﻿@model FileModel
+<div class="text-center">
+    <h2>Importar CSV:</h2>
+
+
+    <form enctype="multipart/form-data" method="post">
+        <dl>
+            <dd>
+                <input asp-for="FormFile" type="file">
+                <span asp-validation-for="FormFile"></span>
+            </dd>
+        </dl>
+        <input class="btn btn-success btn-block" type="submit" value="Upload" />
+    </form>
+
+
+    <a role="button" class="btn btn-dark btn-block" asp-controller="Livro" asp-action="Index">Voltar</a>
+</div>

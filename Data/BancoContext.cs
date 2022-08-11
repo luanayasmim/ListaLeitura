@@ -10,5 +10,14 @@ namespace API_Livros.Data
         }
 
         public DbSet<LivroModel> Livros { get; set; }
+        public DbSet<UserModel> Users { get; set; }
     }
 }
+
+/*
+ * Para adicionar a tabela no banco de dados e criar a migração com o Entity Framework deve utilizar os seguintes comandos no terminal:
+ *      Add-Migration NomeMigração -Context NomeContexto
+ *  
+ *  Atualizar no Banco de Dados:
+ *      Update-Database -Context NomeContexto
+ */

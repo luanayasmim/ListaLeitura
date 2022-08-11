@@ -15,9 +15,11 @@ namespace API_Livros.Repositorio
     {
 
         private readonly ILivroRepositorio _livroRepositorio;
-        public CsvParserService(ILivroRepositorio livroRepositorio)
+        private readonly IUserService _userService;
+        public CsvParserService(ILivroRepositorio livroRepositorio/*, IUserService userService*/)
         {
             _livroRepositorio = livroRepositorio;
+            //_userService = userService;
         }
         public void ReadCSV(string path)
         {
@@ -63,20 +65,5 @@ namespace API_Livros.Repositorio
                 }
             }
         }
-
-        //public void WriteCSVFile(string path, List<LivroModel> livros)
-        //{
-        //    using(StreamWriter streamWriter= new StreamWriter(path, false, new UTF8Encoding(true)))
-        //    using(CsvWriter writer = new CsvWriter(streamWriter))
-        //    {
-        //        writer.WriteHeader<LivroModel>();
-        //        writer.NextRecord();
-        //        foreach(LivroModel livro in livros)
-        //        {
-        //            writer.WriteRecord<LivroModel>(livro);
-        //            writer.NextRecord();
-        //        }
-        //    }
-        //}
     }
 }

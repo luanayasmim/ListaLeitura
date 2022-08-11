@@ -10,22 +10,22 @@
     <div class="form-group">
         <label>Título</label>
         <!--O asp-for define onde o valor informado será atribuido-->
-        <input asp-for="NomeLivro" type="text" class="form-control" placeholder="Harry Potter e a Pedra Filosofal">
+        <input asp-for="NomeLivro" type="text" class="form-control">
         @Html.ValidationMessageFor(x => x.NomeLivro)
     </div>
     <div class="form-group">
         <label>Autor</label>
-        <input asp-for="NomeAutor" type="text" class="form-control" placeholder="J.K Rolling">
+        <input asp-for="NomeAutor" type="text" class="form-control">
         @Html.ValidationMessageFor(x => x.NomeAutor)
     </div>
     <div class="form-group">
         <label>Data de lançamento</label>
-        <input asp-for="DataLancamento" type="date" class="form-control" placeholder="26/06/1997">
+        <input asp-for="DataLancamento" type="date" class="form-control">
         @Html.ValidationMessageFor(x => x.DataLancamento)
     </div>
     <div class="form-group">
         <label>Número de Páginas</label>
-        <input asp-for="NumPaginas" type="number" class="form-control" placeholder="300">
+        <input asp-for="NumPaginas" type="number" class="form-control">
         @Html.ValidationMessageFor(x => x.NumPaginas)
     </div>
     <div class="form-check">

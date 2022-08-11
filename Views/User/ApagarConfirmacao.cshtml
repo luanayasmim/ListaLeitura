@@ -1,0 +1,10 @@
+﻿@model UserModel
+@{
+    ViewData["Title"] = "Apagar";
+}
+<div class="text-center">
+    <h2>Você realmente deseja remover (@Model.NameUser) da lista?</h2>
+</div>
+<!--O asp-route-id Envia a informação do id que esta definida na url para a controller-->
+<a role="button" class="btn btn-danger btn-block" asp-controller="User" asp-action="Apagar" asp-route-id="@Model.UserModelId">Remover</a>
+<a role="button" class="btn btn-dark btn-block" asp-controller="User" asp-action="Index">Cancelar</a>

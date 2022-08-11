@@ -1,0 +1,41 @@
+﻿@using API_Livros.Enums
+@model UserModel
+@{
+    ViewData["Title"] = "Adicionar";
+}
+<h1>Adicionar Novo Usuário</h1>
+<form asp-controller="User" asp-action="Criar" method="post">
+    <div class="form-group">
+        <label>Nome:</label>
+        <!--O asp-for define onde o valor informado será atribuido-->
+        <input asp-for="NameUser" type="text" class="form-control" placeholder="Luana Yasmim">
+        @Html.ValidationMessageFor(x => x.NameUser)
+    </div>
+    <div class="form-group">
+        <label>Usuário:</label>
+        <input asp-for="LoginUser" type="text" class="form-control" placeholder="luaninha">
+        @Html.ValidationMessageFor(x => x.LoginUser)
+    </div>
+    <div class="form-group">
+        <label>Email:</label>
+        <input asp-for="EmailUser" type="email" class="form-control" placeholder="luana.yasmim@gmail.com">
+        @Html.ValidationMessageFor(x => x.EmailUser)
+    </div>
+    <div class="form-group">
+        <label>Perfil de Acesso:</label>
+        <select class="form-control" asp-for="ProfileUser">
+            <option value=0>Selecione</option>
+            <option value="@ProfileEnum.Adm">Administrador</option>
+            <option value="@ProfileEnum.Comum">Comum</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Senha:</label>
+        <input asp-for="PasswordUser" type="password" class="form-control" placeholder="************">
+        @Html.ValidationMessageFor(x => x.PasswordUser)
+    </div>
+    <br />
+    <button type="submit" class="btn btn-success btn-block" asp-controller="User" asp-action="Criar">Adicionar</button>
+    <a role="button" class="btn btn-dark btn-block" asp-controller="User" asp-action="Index">Voltar</a>
+
+</form>

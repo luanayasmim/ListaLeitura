@@ -1,0 +1,88 @@
+﻿@model List<UserModel>
+@{
+    ViewData["Title"] = "Lista de Usuários";
+}
+@*
+    Exibir em uma tabela as informções:
+        1) UserModelId
+        2) NameUser
+        3) LoginUser
+        4) EmailUser
+        5) ProfileUser
+        6) PasswordUser
+        7) RegisterDateUser - Auto Increment - Pega a data e a hora que o usuário foi inserido na lista
+        8)UpdateDateUser - Auto Increment - Pega a data e hora que o usuário foi atualizado
+*@
+<div class="text-center">
+
+    <div class="d-grid gap-2 d-md-flex justify-context-md-start">
+        <a role="button" class="btn btn-success" asp-controller="User" asp-action="Criar">Adicionar Usuário</a>
+    </div>
+
+    <!--<div class="d-grid gap-2 d-md-flex justify-content-end">
+        <a role="button" class="btn btn-outline-dark" asp-controller="User" asp-action="Importar">Importar Livros</a>
+        <a role="button" class="btn btn-outline-dark" asp-controller="User" asp-action="Exportar">Exportar Livros</a>
+    </div>-->
+
+
+    <h1>Lista de Usuários</h1>
+
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <!--Mensagem de sucesso-->
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm" id="close-alert" arial-label="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <!--Mensagem de erro-->
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm" id="close-alert" arial-label="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+    <br />
+
+
+    <table id="tabelaLivros" class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Login</th>
+                <th scope="col">Email</th>
+                <th scope="col">Perfil de Acesso</th>
+                <th scope="col">Cadastrado em:</th>
+                <th scope="col">Ultima Alteração:</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var user in Model)
+                {
+                    <tr>
+                        <th scope="row">@user.UserModelId</th>
+                        <td>@user.NameUser</td>
+                        <td>@user.LoginUser</td>
+                        <td>@user.EmailUser</td>
+                        <td>@user.ProfileUser</td>
+                        <td>@user.RegisterDateUser</td>
+                        <td>@user.UpdateDateUser</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                @* O asp-route-id armazena o dado da id e envia para outra página  *@
+                                <a role="button" class="btn btn-info" asp-route-id="@user.UserModelId" asp-controller="User" asp-action="Editar">Editar</a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@user.UserModelId" asp-controller="User" asp-action="ApagarConfirmacao">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

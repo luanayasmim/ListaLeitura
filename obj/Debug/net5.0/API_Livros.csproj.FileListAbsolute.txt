@@ -152,3 +152,8 @@ C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\API_Livros.pdb
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\API_Livros.genruntimeconfig.cache
 C:\Users\lylourenco\source\repos\ListaLeitura\bin\Debug\net5.0\CsvHelper.dll
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\Livro\Importar.cshtml.g.cs
+C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\User\Index.cshtml.g.cs
+C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\User\Criar.cshtml.g.cs
+C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\User\Editar.cshtml.g.cs
+C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\User\ApagarConfirmacao.cshtml.g.cs
+C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\User\Importar.cshtml.g.cs
