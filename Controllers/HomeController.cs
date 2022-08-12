@@ -1,4 +1,5 @@
-﻿using API_Livros.Models;
+﻿using API_Livros.Helpers.Filters;
+using API_Livros.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -12,6 +13,7 @@ using System.Diagnostics;
  */
 namespace API_Livros.Controllers
 {
+    [UserFilter]
     public class HomeController : Controller
     {
 

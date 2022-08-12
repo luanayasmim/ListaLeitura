@@ -1,7 +1,9 @@
 using API_Livros.Data;
+using API_Livros.Helpers;
 using API_Livros.Repositorio;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,9 +28,17 @@ namespace API_Livros
             //Configurando o banco de dados
             //services.AddEntityFrameworkSqlServer().AddDbContext<BancoContext>(o=>o.UseSqlServer(Configuration.GetConnectionString("DataBase")));
             services.AddEntityFrameworkSqlServer().AddDbContext<BancoContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DataBase")));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<ILivroRepositorio, LivroRepositorio>();
             services.AddScoped<ICsvParserService, CsvParserService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ISessionHelper, SessionHelper>();
+            services.AddSession(o => 
+            {
+                o.Cookie.HttpOnly = true;
+                o.Cookie.IsEssential = true;
+            });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +60,8 @@ namespace API_Livros
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

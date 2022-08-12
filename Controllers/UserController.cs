@@ -1,4 +1,5 @@
-﻿using API_Livros.Models;
+﻿using API_Livros.Helpers.Filters;
+using API_Livros.Models;
 using API_Livros.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace API_Livros.Controllers
 {
+    [UserFilter]
+    [UserAdmFilter]
     public class UserController : Controller
     {
         private readonly IUserService _userService;
-        private ICsvParserService _csvParser;
+        //private ICsvParserService _csvParser;
 
         //Construtor da classe
         public UserController(IUserService userService/*, ICsvParserService csvParser*/)
@@ -129,7 +132,7 @@ namespace API_Livros.Controllers
         }
 
         //CSV Helper
-        [HttpGet]
+        /*[HttpGet]
         public IActionResult Importar()
         {
             return View();
@@ -154,6 +157,6 @@ namespace API_Livros.Controllers
             string path = @"C:\Users\lylourenco\Downloads\usuariosExportado.csv";
             _csvParser.WriteCSV(path);
             return RedirectToAction("Index");
-        }
+        }*/
     }
 }

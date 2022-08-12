@@ -7,19 +7,26 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Threading.Tasks;
 using API_Livros.Repositorio;
+using API_Livros.Helpers;
 
 namespace API_Livros.Controllers
 {
     public class LoginController : Controller
     {
         private readonly IUserService _userService;
-        public LoginController(IUserService userService)
+        private readonly ISessionHelper _session;
+        public LoginController(IUserService userService, ISessionHelper session)
         {
             _userService = userService;
+            _session = session;
         }
 
         public IActionResult Index()
         {
+            //Se o usuário estiver logado, redireciona para a home
+            if (_session.SearchSession() != null)
+                return RedirectToAction("Index", "Home");
+
             return View();
         }
         [HttpPost]
@@ -36,9 +43,11 @@ namespace API_Livros.Controllers
                     {
                         if(user.PasswordCheck(loginModel.Password))
                         {
+                            _session.StartSession(user);
                             return RedirectToAction("Index", "Home");
                                                     //Ação    Controller
                         }
+
                         TempData["MensagemErro"] = $"Usuário ou senha inválidos.";
                     }
                     else
@@ -52,6 +61,12 @@ namespace API_Livros.Controllers
                 TempData["MensagemErro"] = $"Erro ao realizar o login (ˉ﹃ˉ), detalhes do erro: {error.Message}";
                 return RedirectToAction("Index");
             }
+        }
+
+        public IActionResult Exit()
+        {
+            _session.EndSession();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using API_Livros.Models;
+﻿using API_Livros.Helpers.Filters;
+using API_Livros.Models;
 using API_Livros.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace API_Livros.Controllers
 {
+    [UserFilter]
     public class LivroController : Controller
     {
         private readonly ILivroRepositorio _livroRepositorio;
