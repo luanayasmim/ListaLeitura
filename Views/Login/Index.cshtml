@@ -1,0 +1,27 @@
+﻿@model LoginModel
+@{
+    Layout = "_LayoutLogin"; //Importando o Layout de Login
+    ViewData["Title"] = "Login";
+}
+@if (TempData["MensagemErro"] != null)
+{
+    <!--Mensagem de erro-->
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm" id="close-alert" arial-label="Close">X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+<br/>
+<form asp-controller="Login" asp-action="Entry" method="post">
+    <div class="mb-3">
+        <label for="login" class="form-label">Login:</label>
+        <input id="login" type="text" class="form-control" asp-for="Login">
+        @Html.ValidationMessageFor(x => x.Login)
+    </div>
+    <div class="mb-3">
+        <label for="senha" class="form-label">Senha:</label>
+        <input type="password" class="form-control" id="senha" asp-for="Password">
+        @Html.ValidationMessageFor(x => x.Password)
+    </div>
+    <button type="submit" class="btn btn-block btn-info">Entrar</button>
+</form>

@@ -15,6 +15,11 @@ namespace API_Livros.Repositorio
             _bancoContext = bancoContext;
         }
 
+        public UserModel LookforLogin(string login)
+        {
+            return _bancoContext.Users.FirstOrDefault(x => x.LoginUser.ToUpper() == login.ToUpper());
+        }
+
         List<UserModel> IUserService.BuscarTodos()
         {
             return _bancoContext.Users.ToList();
@@ -62,5 +67,6 @@ namespace API_Livros.Repositorio
             return true;
         }
 
+        
     }
 }

@@ -29,5 +29,13 @@ namespace API_Livros.Models
 
         public DateTime RegisterDateUser { get; set; }
         public DateTime? UpdateDateUser { get; set; } // ? - informa que o campo pode ser nulo
+
+        public bool PasswordCheck(string password)
+        {
+            if (PasswordUser == password)
+                return true;
+            else
+                return false;
+        }
     }
 }
