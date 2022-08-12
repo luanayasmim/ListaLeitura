@@ -1,4 +1,5 @@
 ﻿using API_Livros.Enums;
+using API_Livros.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -32,10 +33,19 @@ namespace API_Livros.Models
 
         public bool PasswordCheck(string password)
         {
-            if (PasswordUser == password)
-                return true;
-            else
-                return false;
+            return PasswordUser == password.DoHash();
+        }
+
+        public void SetPasswordHash()
+        {
+            PasswordUser = PasswordUser.DoHash(); //Método de extensão com o uso do this
+        }
+        
+        public string DoNewPassword()
+        {
+            string newPassword = Guid.NewGuid().ToString().Substring(0, 8);
+            PasswordUser = newPassword.DoHash();
+            return newPassword;
         }
     }
 }

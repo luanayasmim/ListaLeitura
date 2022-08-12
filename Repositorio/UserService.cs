@@ -19,6 +19,11 @@ namespace API_Livros.Repositorio
         {
             return _bancoContext.Users.FirstOrDefault(x => x.LoginUser.ToUpper() == login.ToUpper());
         }
+        public UserModel LookforEmail(string email, string login)
+        {
+            return _bancoContext.Users.FirstOrDefault(x => x.EmailUser.ToUpper() == email.ToUpper() && x.LoginUser.ToUpper() == login.ToUpper());
+
+        }
 
         List<UserModel> IUserService.BuscarTodos()
         {
@@ -34,6 +39,7 @@ namespace API_Livros.Repositorio
         {
             //Inserindo livro no banco
             user.RegisterDateUser = DateTime.Now;
+            user.SetPasswordHash();
             _bancoContext.Users.Add(user);
             _bancoContext.SaveChanges();
             return user;

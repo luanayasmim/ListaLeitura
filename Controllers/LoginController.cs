@@ -68,5 +68,39 @@ namespace API_Livros.Controllers
             _session.EndSession();
             return RedirectToAction("Index", "Login");
         }
+
+        public IActionResult ResetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult SendLink(ResetPasswordModel resetPassword)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    UserModel user = _userService.LookforEmail(resetPassword.Email, resetPassword.Login);
+
+
+                    if (user != null)
+                    {
+                        string newPassword = user.DoNewPassword();
+                        _userService.Atualizar(user);
+                        TempData["MensagemSucesso"] = $"A sua nova senha foi enviada no seu e-mail.";
+                        return RedirectToAction("Index", "Login");
+                    }
+                    else
+                        TempData["MensagemErro"] = $"Não foi possível redefinir a senha, verifique os dados informados.";
+
+                }
+                return View("Index");
+            }
+            catch (Exception error)
+            {
+                TempData["MensagemErro"] = $"Erro ao redefinir a sua senha (ˉ﹃ˉ), detalhes do erro: {error.Message}";
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
