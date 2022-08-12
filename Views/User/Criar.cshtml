@@ -24,10 +24,11 @@
     <div class="form-group">
         <label>Perfil de Acesso:</label>
         <select class="form-control" asp-for="ProfileUser">
-            <option value=0>Selecione</option>
+            <option value="">Selecione</option>
             <option value="@ProfileEnum.Adm">Administrador</option>
             <option value="@ProfileEnum.Comum">Comum</option>
         </select>
+        @Html.ValidationMessageFor(x => x.ProfileUser)
     </div>
     <div class="form-group">
         <label>Senha:</label>

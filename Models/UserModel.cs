@@ -21,8 +21,8 @@ namespace API_Livros.Models
         //[EmailAddress(ErrorMessage ="O email informado não é válido!")]
         public string EmailUser { get; set; }
 
-        //[Required(ErrorMessage = "Informe o Perfil de Acesso!")]
-        public ProfileEnum ProfileUser { get; set; }
+        //Required(ErrorMessage = "Informe o Perfil de Acesso!")]
+        public ProfileEnum? ProfileUser { get; set; }
 
         //[Required(ErrorMessage = "Informe a senha!")]
         public string PasswordUser { get; set; }

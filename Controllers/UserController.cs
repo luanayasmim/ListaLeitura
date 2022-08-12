@@ -1,6 +1,7 @@
 ﻿using API_Livros.Models;
 using API_Livros.Repositorio;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -12,10 +13,10 @@ namespace API_Livros.Controllers
         private ICsvParserService _csvParser;
 
         //Construtor da classe
-        public UserController(IUserService userService, ICsvParserService csvParser)
+        public UserController(IUserService userService/*, ICsvParserService csvParser*/)
         {
             _userService = userService;
-            _csvParser = csvParser;
+            //_csvParser = csvParser;
 
         }
 
@@ -71,9 +72,21 @@ namespace API_Livros.Controllers
         {
             try
             {
+                UserModel userUpdated = null;
                 if (ModelState.IsValid)
                 {
-                    _userService.Atualizar(user);
+                    userUpdated = new UserModel()
+                    {
+                        UserModelId = user.UserModelId,
+                        NameUser = user.NameUser,
+                        LoginUser = user.LoginUser,
+                        EmailUser = user.EmailUser,
+                        ProfileUser = user.ProfileUser,
+                        PasswordUser= user.PasswordUser,
+                        RegisterDateUser = user.RegisterDateUser,
+                        UpdateDateUser = DateTime.Now
+                    };
+                    user = _userService.Atualizar(userUpdated);
                     TempData["MensagemSucesso"] = @"Usuário atualizado com sucesso \(￣︶￣*\))";
                     return RedirectToAction("Index");
                 }
