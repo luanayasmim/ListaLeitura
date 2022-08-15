@@ -62,6 +62,22 @@ namespace API_Livros.Repositorio
             return userDB;
         }
 
+        public UserModel ChangePassword(ChangePasswordModel passwordModel)
+        {
+            UserModel userDb = ListarPorId(passwordModel.Id);
+            if (userDb == null) throw new Exception("Não foi possivel encontrar o usuário cadastrado!");
+            if (!userDb.PasswordCheck(passwordModel.CurrentPassword)) throw new Exception("A senha informada não corresponde a senha atual!");
+            if (userDb.PasswordCheck(passwordModel.NewPassword)) throw new Exception("A nova senha não deve ser a mesma que a senha atual!");
+
+            userDb.SetNewPassword(passwordModel.NewPassword);
+            userDb.UpdateDateUser = DateTime.Now;
+
+            _bancoContext.Users.Update(userDb);
+            _bancoContext.SaveChanges();
+
+            return userDb;
+        }
+
         public bool Apagar(int id)
         {
             UserModel userDB = ListarPorId(id);
@@ -73,6 +89,5 @@ namespace API_Livros.Repositorio
             return true;
         }
 
-        
     }
 }

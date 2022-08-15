@@ -36,6 +36,11 @@ namespace API_Livros.Models
             return PasswordUser == password.DoHash();
         }
 
+        public void SetNewPassword(string newPassword)
+        {
+            PasswordUser = newPassword.DoHash();
+        }
+
         public void SetPasswordHash()
         {
             PasswordUser = PasswordUser.DoHash(); //Método de extensão com o uso do this

@@ -162,3 +162,4 @@ C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\Share
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\Shared\Components\Menu\Default.cshtml.g.cs
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\Restricted\Index.cshtml.g.cs
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\Login\ResetPassword.cshtml.g.cs
+C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\ChangePassword\Index.cshtml.g.cs

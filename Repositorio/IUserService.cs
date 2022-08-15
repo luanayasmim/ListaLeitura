@@ -14,7 +14,9 @@ namespace API_Livros.Repositorio
         UserModel ListarPorId(int id);
         UserModel Adicionar(UserModel livro);
         UserModel Atualizar(UserModel livro);
+        UserModel ChangePassword(ChangePasswordModel passwordModel);
         bool Apagar(int id);
+
 
     }
 }
