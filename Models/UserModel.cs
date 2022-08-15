@@ -31,6 +31,9 @@ namespace API_Livros.Models
         public DateTime RegisterDateUser { get; set; }
         public DateTime? UpdateDateUser { get; set; } // ? - informa que o campo pode ser nulo
 
+        //Busca a lista de livros 1 - n
+        public virtual List<LivroModel> Books { get; set; }
+
         public bool PasswordCheck(string password)
         {
             return PasswordUser == password.DoHash();

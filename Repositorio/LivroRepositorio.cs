@@ -15,9 +15,9 @@ namespace API_Livros.Repositorio
             _bancoContext = bancoContext;
         }
 
-        public List<LivroModel> BuscarTodos()
+        public List<LivroModel> BuscarTodos(int userId)
         {
-            return _bancoContext.Livros.ToList();
+            return _bancoContext.Livros.Where(x=>x.UserId == userId).ToList();
         }
 
         public LivroModel ListarPorId(int id)

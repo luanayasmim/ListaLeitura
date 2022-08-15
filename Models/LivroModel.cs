@@ -23,6 +23,12 @@ namespace API_Livros.Models
         public int NumPaginas { get; set; }
 
         public bool StatusLivro { get; set; }
+
         public DateTime DataCadastro { get; set; }
+
+        //Coluna que pega o id do usuário que cadastrar o livro
+        public int? UserId { get; set; }
+
+        public UserModel User { get; set; }
     }
 }

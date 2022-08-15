@@ -1,4 +1,5 @@
-﻿using API_Livros.Models;
+﻿using API_Livros.Mappers;
+using API_Livros.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace API_Livros.Data
@@ -11,6 +12,12 @@ namespace API_Livros.Data
 
         public DbSet<LivroModel> Livros { get; set; }
         public DbSet<UserModel> Users { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new LivroMap());
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
 

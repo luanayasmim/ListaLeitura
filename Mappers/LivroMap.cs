@@ -1,10 +1,12 @@
 ﻿
 using API_Livros.Models;
 using CsvHelper.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace API_Livros.Mappers
 {
-    public sealed class LivroMap : ClassMap<LivroModel>
+    public sealed class LivroMap : ClassMap<LivroModel>, IEntityTypeConfiguration<LivroModel>
     {
         public LivroMap() 
         {
@@ -15,6 +17,13 @@ namespace API_Livros.Mappers
             Map(m => m.NumPaginas).Name("NumPaginas");
             Map(m => m.StatusLivro).Name("StatusLivro");
             Map(m => m.DataCadastro).Name("DataCadastro");
+            Map(m => m.UserId).Name("UserId");
+        }
+
+        public void Configure(EntityTypeBuilder<LivroModel> builder)
+        {
+            builder.HasKey(x => x.Id);
+            builder.HasOne(x => x.User);
         }
     }
 }

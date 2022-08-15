@@ -1,4 +1,5 @@
-﻿using API_Livros.Mappers;
+﻿using API_Livros.Helpers;
+using API_Livros.Mappers;
 using API_Livros.Models;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -16,9 +17,11 @@ namespace API_Livros.Repositorio
 
         private readonly ILivroRepositorio _livroRepositorio;
         private readonly IUserService _userService;
-        public CsvParserService(ILivroRepositorio livroRepositorio/*, IUserService userService*/)
+        private readonly ISessionHelper _sessionHelper;
+        public CsvParserService(ILivroRepositorio livroRepositorio, ISessionHelper sessionHelper/*, IUserService userService*/)
         {
             _livroRepositorio = livroRepositorio;
+            _sessionHelper = sessionHelper;
             //_userService = userService;
         }
         public void ReadCSV(string path)
@@ -50,7 +53,8 @@ namespace API_Livros.Repositorio
 
         public void WriteCSV(string path)
         {
-            List<LivroModel> livros = _livroRepositorio.BuscarTodos();
+            UserModel userLogin = _sessionHelper.SearchSession();
+            List<LivroModel> livros = _livroRepositorio.BuscarTodos(userLogin.UserModelId);
 
             using (var writer = new StreamWriter(path))
 

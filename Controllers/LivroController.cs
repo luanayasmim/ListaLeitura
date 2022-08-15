@@ -1,4 +1,5 @@
-﻿using API_Livros.Helpers.Filters;
+﻿using API_Livros.Helpers;
+using API_Livros.Helpers.Filters;
 using API_Livros.Models;
 using API_Livros.Repositorio;
 using Microsoft.AspNetCore.Mvc;
@@ -11,19 +12,21 @@ namespace API_Livros.Controllers
     public class LivroController : Controller
     {
         private readonly ILivroRepositorio _livroRepositorio;
+        private readonly ISessionHelper _sessionHelper;
         private ICsvParserService _csvParser;
 
         //Construtor da classe
-        public LivroController(ILivroRepositorio livroRepositorio, ICsvParserService csvParser)
+        public LivroController(ILivroRepositorio livroRepositorio, ICsvParserService csvParser, ISessionHelper sessionHelper)
         {
             _livroRepositorio = livroRepositorio;
             _csvParser = csvParser;
-
+            _sessionHelper = sessionHelper;
         }
         //Métodos GET
         public IActionResult Index()
         {
-            var livros = _livroRepositorio.BuscarTodos();
+            UserModel userLogin = _sessionHelper.SearchSession();
+            var livros = _livroRepositorio.BuscarTodos(userLogin.UserModelId);
             return View(livros);
         }
 
@@ -55,6 +58,8 @@ namespace API_Livros.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    UserModel userLogin = _sessionHelper.SearchSession();
+                    p_livro.UserId = userLogin.UserModelId;
                     _livroRepositorio.Adicionar(p_livro);
                     TempData["MensagemSucesso"] = @"Livro adicionado com sucesso \(￣︶￣*\))";
                     return RedirectToAction("Index");
@@ -75,6 +80,8 @@ namespace API_Livros.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    UserModel userLogin = _sessionHelper.SearchSession();
+                    livro.UserId = userLogin.UserModelId;
                     _livroRepositorio.Atualizar(livro);
                     TempData["MensagemSucesso"] = @"Livro atualizado com sucesso \(￣︶￣*\))";
                     return RedirectToAction("Index");
