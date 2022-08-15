@@ -33,6 +33,7 @@ namespace API_Livros
             services.AddScoped<ICsvParserService, CsvParserService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ISessionHelper, SessionHelper>();
+            services.AddScoped<ISendEmail, SendEmail>();
             services.AddSession(o => 
             {
                 o.Cookie.HttpOnly = true;

@@ -15,10 +15,12 @@ namespace API_Livros.Controllers
     {
         private readonly IUserService _userService;
         private readonly ISessionHelper _session;
-        public LoginController(IUserService userService, ISessionHelper session)
+        private readonly ISendEmail _email;
+        public LoginController(IUserService userService, ISessionHelper session, ISendEmail email)
         {
             _userService = userService;
             _session = session;
+            _email = email;
         }
 
         public IActionResult Index()
@@ -36,16 +38,16 @@ namespace API_Livros.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                   UserModel user = _userService.LookforLogin(loginModel.Login);
+                    UserModel user = _userService.LookforLogin(loginModel.Login);
 
 
                     if (user != null)
                     {
-                        if(user.PasswordCheck(loginModel.Password))
+                        if (user.PasswordCheck(loginModel.Password))
                         {
                             _session.StartSession(user);
                             return RedirectToAction("Index", "Home");
-                                                    //Ação    Controller
+                            //Ação    Controller
                         }
 
                         TempData["MensagemErro"] = $"Usuário ou senha inválidos.";
@@ -86,8 +88,20 @@ namespace API_Livros.Controllers
                     if (user != null)
                     {
                         string newPassword = user.DoNewPassword();
-                        _userService.Atualizar(user);
-                        TempData["MensagemSucesso"] = $"A sua nova senha foi enviada no seu e-mail.";
+
+                        string subject = "Nova senha - Gerenciador de Leitura";
+                        string compose = $"A sua nova senha é: {newPassword}";
+                        bool emailSent = _email.Send(user.EmailUser, subject, compose);
+
+                        if (emailSent)
+                        {
+                            _userService.Atualizar(user);
+                            TempData["MensagemSucesso"] = $"A sua nova senha foi enviada no seu e-mail.";
+                        }
+                        else
+                        {
+                            TempData["MensagemErro"] = $"Não foi possível enviar o e-mail com a nova senha. Tente novamente mais tarde!";
+                        }
                         return RedirectToAction("Index", "Login");
                     }
                     else
