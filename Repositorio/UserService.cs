@@ -54,6 +54,7 @@ namespace API_Livros.Repositorio
             userDB.NameUser = user.NameUser;
             userDB.LoginUser = user.LoginUser;
             userDB.ProfileUser = user.ProfileUser;
+            userDB.EmailUser = user.EmailUser;
             userDB.PasswordUser = user.PasswordUser;
             user.UpdateDateUser = DateTime.Now;
 

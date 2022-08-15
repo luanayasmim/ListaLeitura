@@ -20,19 +20,53 @@
     </div>
 }
 <br />
-<form asp-controller="Login" asp-action="Entry" method="post">
-    <div class="mb-3">
-        <label for="login" class="form-label">Login:</label>
-        <input id="login" type="text" class="form-control" asp-for="Login">
-        @Html.ValidationMessageFor(x => x.Login)
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="https://media4.giphy.com/media/H6KB7Tqy3OlOM/giphy.gif?cid=ecf05e47wv4dd4zb70ug3h250ghiyjilabiy99gexo797bkt&rid=giphy.gif&ct=g" id="icon" alt="User Icon" />
+        </div>
+        <!--Formulário de Login-->
+        <form asp-controller="Login" asp-action="Entry" method="post">
+            <div>
+                <input id="login" class="form-control fadeIn second" placeholder="Usuário" name="login" type="text" asp-for="Login">
+                @Html.ValidationMessageFor(x => x.Login)
+            </div>
+            <div>
+                <input id="senha" class="form-control fadeIn third" placeholder="Senha" type="password" asp-for="Password">
+                @Html.ValidationMessageFor(x => x.Password)
+            </div>
+
+            <input type="submit" class="fadeIn fourth" value="Entrar" />
+        </form>
+        <!--Esqueci a senha-->
+        <div id="formFooter">
+            <a class="underlineHover" asp-controller="Login" asp-action="ResetPassword">Esqueci minha senha</a>
+        </div>
+
     </div>
-    <div class="mb-3">
-        <label for="senha" class="form-label">Senha:</label>
-        <input type="password" class="form-control" id="senha" asp-for="Password">
-        @Html.ValidationMessageFor(x => x.Password)
+</div>
+<!--
+<div class="bg">
+    <div>
+        <h1 class="">Gerenciador de Leitura</h1>
+        <form asp-controller="Login" asp-action="Entry" method="post">
+            <div class="mb-3">
+                <label for="login" class="form-label">Login:</label>
+                <input id="login" type="text" class="form-control" asp-for="Login">
+                
+            </div>
+            <div class="mb-3">
+                <label for="senha" class="form-label">Senha:</label>
+                <input type="password" class="form-control" id="senha" asp-for="Password">
+                
+            </div>
+            <button type="submit" class="btn btn-block btn-info">Entrar</button>
+            <div class="mb-4 text-sm-center mx-auto">
+                <a class="text-primary" asp-controller="Login" asp-action="ResetPassword">Esqueci minha senha</a>
+            </div>
+        </form>
     </div>
-    <button type="submit" class="btn btn-block btn-info">Entrar</button>
-    <div class="mb-4 text-sm-center mx-auto">
-        <a class="text-primary" asp-controller="Login" asp-action="ResetPassword">Esqueci minha senha</a>
-    </div>
-</form>
+</div>
+-->

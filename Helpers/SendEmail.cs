@@ -49,7 +49,7 @@ namespace API_Livros.Helpers
                     return true;
                 }
             }
-            catch (Exception err)
+            catch (Exception)
             {
                 //{"Value cannot be null. (Parameter 'address')"}
                 return false;

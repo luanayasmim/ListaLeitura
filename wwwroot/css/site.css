@@ -87,6 +87,12 @@ body {
     height: 31px;
 }
 
+/*Página de login*/
+.bg_login {
+    background-image: url('https://images.pexels.com/photos/2177482/pexels-photo-2177482.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
+}
+
+
 /*Página inicial*/
 .bg {
     background-image: url('https://tm.ibxk.com.br/2021/10/25/25025439320000.jpg?ims=1120x420');
