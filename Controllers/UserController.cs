@@ -13,13 +13,11 @@ namespace API_Livros.Controllers
     public class UserController : Controller
     {
         private readonly IUserService _userService;
-        //private ICsvParserService _csvParser;
 
         //Construtor da classe
-        public UserController(IUserService userService/*, ICsvParserService csvParser*/)
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            //_csvParser = csvParser;
 
         }
 
@@ -130,33 +128,5 @@ namespace API_Livros.Controllers
             }
 
         }
-
-        //CSV Helper
-        /*[HttpGet]
-        public IActionResult Importar()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Importar(FileModel file)
-        {
-            var filePath = Path.GetTempFileName();
-
-            using (var stream = System.IO.File.Create(filePath))
-            {
-                await file.FormFile.CopyToAsync(stream);
-            }
-            _csvParser.ReadCSV(filePath);
-            return View("Index");
-        }
-
-        //Exportar
-        public IActionResult Exportar()
-        {
-            string path = @"C:\Users\lylourenco\Downloads\usuariosExportado.csv";
-            _csvParser.WriteCSV(path);
-            return RedirectToAction("Index");
-        }*/
     }
 }

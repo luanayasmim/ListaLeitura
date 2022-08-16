@@ -1,7 +1,7 @@
-﻿@model ResetPasswordModel
+﻿@model UserOutModel
 @{
     Layout = "_LayoutLogin"; //Importando o Layout de Login
-    ViewData["Title"] = "Redefinir Senha";
+    ViewData["Title"] = "Confirmação de email";
 }
 
 
@@ -20,16 +20,12 @@
 
     <!--Formulário Redefinir Senha-->
     <div id="formContent">
-        <form asp-controller="Login" asp-action="SendLink" method="post">
+        <form asp-controller="Login" asp-action="ConfirmUser" method="post">
             <div>
-                <input id="login" class="form-control fadeIn second" placeholder="Usuário" type="text" asp-for="Login">
-                @Html.ValidationMessageFor(x => x.Login)
+                <input id="login" class="form-control fadeIn second" placeholder="Código" type="text">
             </div>
-            <div>
-                <input id="email" class="form-control fadeIn third" placeholder="Email" type="email" asp-for="Email">
-                @Html.ValidationMessageFor(x => x.Email)
-            </div>
-            <input type="submit" class="fadeIn fourth" value="Redefinir Senha" />
+            
+            <input type="submit" class="fadeIn fourth" value="Verificar Email" />
         </form>
         <div id="formFooter">
             <a class="btn btn-dark btn-block" asp-controller="Login" asp-action="Index">Voltar</a>

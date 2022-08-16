@@ -1,0 +1,53 @@
+﻿@using API_Livros.Enums
+@model UserOutModel
+@{
+    Layout = "_LayoutLogin";
+    ViewData["Title"] = "Criar um novo usuário";
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <!--Mensagem de erro-->
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm" id="close-alert" arial-label="Close">X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+
+<br />
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!--Formulário de Criar um novo usuário-->
+        <form asp-controller="User" asp-action="Criar" method="post">
+            <div class="container">
+                <h1 class="fadeIn first">Crie seu Usuário</h1>
+            </div>
+            <!--O asp-for define onde o valor informado será atribuido-->
+            <input class="form-control fadeIn first" placeholder="Nome" asp-for="NameUserOut" type="text">
+            @Html.ValidationMessageFor(x => x.NameUserOut)
+
+            <input class="form-control fadeIn second" placeholder="Usuário" asp-for="LoginUserOut" type="text">
+            @Html.ValidationMessageFor(x => x.LoginUserOut)
+
+            <input class="form-control fadeIn third" placeholder="Email" asp-for="EmailUserOut" type="email">
+            @Html.ValidationMessageFor(x => x.EmailUserOut)
+
+            <input class="form-control fadeIn fourth" placeholder="Senha" asp-for="PasswordUserOut" type="password">
+            @Html.ValidationMessageFor(x => x.PasswordUserOut)
+
+            <input class="form-control fadeIn fourth" placeholder="Confirme a senha" asp-for="ConfirmPassword" type="password">
+            @Html.ValidationMessageFor(x => x.ConfirmPassword)
+
+            <input type="submit" class="fadeIn fourth" value="Criar" asp-controller="Login" asp-action="CreateUser">
+
+        </form>
+
+        <div id="formFooter">
+            <a class="underlineHover" asp-controller="Login" asp-action="Index">Voltar</a>
+        </div>
+
+    </div>
+
+</div>
+
