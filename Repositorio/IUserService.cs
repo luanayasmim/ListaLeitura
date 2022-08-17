@@ -12,8 +12,8 @@ namespace API_Livros.Repositorio
         UserModel LookforEmail(string email, string login);
         List<UserModel> BuscarTodos();
         UserModel ListarPorId(int id);
-        UserModel Adicionar(UserModel livro);
-        UserModel Atualizar(UserModel livro);
+        UserModel Adicionar(UserModel user);
+        UserModel Atualizar(UserModel user);
         UserModel ChangePassword(ChangePasswordModel passwordModel);
         bool Apagar(int id);
 

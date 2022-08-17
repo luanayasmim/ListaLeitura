@@ -12,6 +12,7 @@ namespace API_Livros.Data
 
         public DbSet<LivroModel> Livros { get; set; }
         public DbSet<UserModel> Users { get; set; }
+        public DbSet<UserOutModel> UsersOut { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -22,7 +22,7 @@
     <div id="formContent">
         <form asp-controller="Login" asp-action="ConfirmUser" method="post">
             <div>
-                <input id="login" class="form-control fadeIn second" placeholder="Código" type="text">
+                <input id="login" class="form-control fadeIn second" placeholder="Código" type="text" asp-for="VerifyEmail">
             </div>
             
             <input type="submit" class="fadeIn fourth" value="Verificar Email" />

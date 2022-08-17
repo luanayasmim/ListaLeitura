@@ -9,6 +9,7 @@ namespace API_Livros.Models
 {
     public class UserOutModel
     {
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Informe o nome!")]
         public string NameUserOut { get; set; }
@@ -29,6 +30,8 @@ namespace API_Livros.Models
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
+
+        public string VerifyEmail { get; set; }
 
         public string VerificationCode()
         {

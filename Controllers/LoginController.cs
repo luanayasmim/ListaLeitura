@@ -16,14 +16,16 @@ namespace API_Livros.Controllers
         private readonly IUserService _userService;
         private readonly ISessionHelper _session;
         private readonly ISendEmail _email;
-        private UserOutModel _userOut;
-        private string _userCode;
+        private readonly IUserOutService _userOutService;
+        //private UserOutModel _userOut;
+        //private string _userCode;
 
-        public LoginController(IUserService userService, ISessionHelper session, ISendEmail email)
+        public LoginController(IUserService userService, ISessionHelper session, ISendEmail email, IUserOutService userOutService)
         {
             _userService = userService;
             _session = session;
             _email = email;
+            _userOutService = userOutService;
         }
 
         public IActionResult Index()
@@ -86,6 +88,22 @@ namespace API_Livros.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    _userOutService.Add(userOut);
+                    TempData["MensagemSucesso"] = @"Usuário adicionado com sucesso \(￣︶￣*\))";
+                }
+                    return RedirectToAction("Index");
+            }
+            catch (Exception err)
+            {
+                TempData["MensagemErro"] = $@"Erro ao adicionar o usuário (ˉ﹃ˉ), detalhes do erro: {err.Message}";
+                return RedirectToAction("Index");
+
+            }
+            /*
+            try
+            {
+                if (ModelState.IsValid)
+                {
                     if (userOut != null)
                     {
                          _userCode = userOut.VerificationCode();
@@ -120,7 +138,7 @@ namespace API_Livros.Controllers
                 TempData["MensagemErro"] = $"Erro ao criar o seu usuário! Detalhes do erro: {err}";
                 return View();
             }
-
+            */
         }
         public IActionResult ConfirmUser()
         {
@@ -130,7 +148,8 @@ namespace API_Livros.Controllers
         [HttpPost]
         public IActionResult ConfirmUser(UserOutModel userOut)
         {
-            if (userOut.Code == _userCode)
+            return View();
+            /*if (userOut.Code == _userCode)
             {
                 UserModel user = new UserModel()
                 {
@@ -150,7 +169,7 @@ namespace API_Livros.Controllers
             {
                 TempData["MensagemErro"] = $"Erro ao validar o código! Tente novamente mais tarde.";
                 return View();
-            }
+            }*/
         }
 
         public IActionResult ResetPassword()
