@@ -78,7 +78,7 @@ namespace API_Livros.Controllers
 
         public IActionResult CreateUser()
         {
-            return View();        
+            return View();
         }
 
         [HttpPost]
@@ -88,15 +88,51 @@ namespace API_Livros.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    UserModel user = new UserModel()
+                    {
+                        NameUser = userOut.NameUserOut,
+                        LoginUser = userOut.LoginUserOut,
+                        EmailUser = userOut.EmailUserOut,
+                        PasswordUser = userOut.PasswordUserOut,
+                        RegisterDateUser = DateTime.Now,
+                        ProfileUser = Enums.ProfileEnum.Comum
+                    };
+
+                    _userService.Adicionar(user);
+                    TempData["MensagemSucesso"] = $"Usuário cadastrado com sucesso. Aproveite a plataforma!";
+
                     _userOutService.Add(userOut);
-                    TempData["MensagemSucesso"] = @"Usuário adicionado com sucesso \(￣︶￣*\))";
+                    return RedirectToAction("Index", "Login");
+
+                    if (userOut != null)
+                    {
+                        string subject = "Cadastro - Gerenciador de Leitura";
+                        string compose = $"Seu código de verificação é {userOut.Code}";
+                        bool emailSent = _email.Send(userOut.EmailUserOut, subject, compose);
+
+                        if (emailSent)
+                        {
+                            TempData["MensagemSucesso"] = $"O código de validação foi enviado para o seu e-mail.";
+                            return RedirectToAction("ConfirmUser", "Login");
+                        }
+                        else
+                        {
+                            TempData["MensagemErro"] = $"Não foi possível enviar o e-mail com o código. Tente novamente mais tarde!";
+                            return RedirectToAction("Index", "Login");
+                        }
+                    }
+                    else
+                    {
+                        TempData["MensagemErro"] = $"Erro ao criar o seu usuário! Tente novamente mais tarde.";
+                        return RedirectToAction("Index", "Login");
+                    }
                 }
-                    return RedirectToAction("Index");
+                return RedirectToAction("ConfirmUser", "Login");
             }
             catch (Exception err)
             {
                 TempData["MensagemErro"] = $@"Erro ao adicionar o usuário (ˉ﹃ˉ), detalhes do erro: {err.Message}";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Login");
 
             }
             /*
@@ -140,15 +176,49 @@ namespace API_Livros.Controllers
             }
             */
         }
-        public IActionResult ConfirmUser()
+        public IActionResult ConfirmUser(int id)
         {
-            return View();
+            UserOutModel userOut = _userOutService.LookforId(id);
+            return View(userOut);
         }
 
         [HttpPost]
         public IActionResult ConfirmUser(UserOutModel userOut)
         {
-            return View();
+
+            try
+            {
+
+                if (userOut.Code == userOut.VerifyEmail)
+                {
+                    UserModel user = new UserModel()
+                    {
+                        NameUser = userOut.NameUserOut,
+                        LoginUser = userOut.LoginUserOut,
+                        EmailUser = userOut.EmailUserOut,
+                        PasswordUser = userOut.PasswordUserOut,
+                        RegisterDateUser = DateTime.Now,
+                        ProfileUser = Enums.ProfileEnum.Comum
+                    };
+
+                    _userService.Adicionar(user);
+                    TempData["MensagemSucesso"] = $"Usuário cadastrado com sucesso. Aproveite a plataforma!";
+                    return RedirectToAction("Index", "Login");
+                }
+                else
+                {
+                    TempData["MensagemErro"] = $"Erro ao validar o código! Tente novamente mais tarde.";
+                    return View();
+                }
+
+            }
+            catch (Exception err)
+            {
+
+                TempData["MensagemErro"] = $"Erro ao validar o código! Detalhes do erro: {err}";
+                return View();
+            }
+
             /*if (userOut.Code == _userCode)
             {
                 UserModel user = new UserModel()
