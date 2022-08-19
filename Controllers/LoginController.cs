@@ -156,6 +156,7 @@ namespace API_Livros.Controllers
 
                     _userService.Adicionar(user);
                     TempData["MensagemSucesso"] = $"Usuário cadastrado com sucesso. Aproveite a plataforma!";
+                    _sessionOut.EndSession();
                     return RedirectToAction("Index", "Login");
                 }
                 else
@@ -171,6 +172,13 @@ namespace API_Livros.Controllers
                 TempData["MensagemErro"] = $"Erro ao validar o código! Detalhes do erro: {err}";
                 return View();
             }
+        }
+
+        public IActionResult BackLogin()
+        {
+            _sessionOut.EndSession();
+            TempData["MensagemErro"] = $"O usuário não foi validado!";
+            return RedirectToAction("Index", "Login");
         }
 
         public IActionResult ResetPassword()
