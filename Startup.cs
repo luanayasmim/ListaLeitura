@@ -26,14 +26,15 @@ namespace API_Livros
             services.AddControllersWithViews();
 
             //Configurando o banco de dados
-            //services.AddEntityFrameworkSqlServer().AddDbContext<BancoContext>(o=>o.UseSqlServer(Configuration.GetConnectionString("DataBase")));
             services.AddEntityFrameworkSqlServer().AddDbContext<BancoContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DataBase")));
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<ILivroRepositorio, LivroRepositorio>();
             services.AddScoped<ICsvParserService, CsvParserService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserOutService, UserOutService>();
             services.AddScoped<ISessionHelper, SessionHelper>();
+            services.AddScoped<ISessionOutHelper, SessionOutHelper>();
             services.AddScoped<ISendEmail, SendEmail>();
             services.AddSession(o => 
             {

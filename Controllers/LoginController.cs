@@ -15,15 +15,15 @@ namespace API_Livros.Controllers
     {
         private readonly IUserService _userService;
         private readonly ISessionHelper _session;
+        private readonly ISessionOutHelper _sessionOut;
         private readonly ISendEmail _email;
         private readonly IUserOutService _userOutService;
-        //private UserOutModel _userOut;
-        //private string _userCode;
 
-        public LoginController(IUserService userService, ISessionHelper session, ISendEmail email, IUserOutService userOutService)
+        public LoginController(IUserService userService, ISessionHelper session, ISessionOutHelper sessionOut, ISendEmail email, IUserOutService userOutService)
         {
             _userService = userService;
             _session = session;
+            _sessionOut = sessionOut;
             _email = email;
             _userOutService = userOutService;
         }
@@ -33,6 +33,10 @@ namespace API_Livros.Controllers
             //Se o usuário estiver logado, redireciona para a home
             if (_session.SearchSession() != null)
                 return RedirectToAction("Index", "Home");
+
+            //Se o usuário estiver com uma sessão de cadastro pendente, redireciona para a confirmação
+            if (_sessionOut.SearchSession() != null)
+                return RedirectToAction("ConfirmUser", "Login");
 
             return View();
         }
@@ -88,24 +92,9 @@ namespace API_Livros.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    UserModel user = new UserModel()
-                    {
-                        NameUser = userOut.NameUserOut,
-                        LoginUser = userOut.LoginUserOut,
-                        EmailUser = userOut.EmailUserOut,
-                        PasswordUser = userOut.PasswordUserOut,
-                        RegisterDateUser = DateTime.Now,
-                        ProfileUser = Enums.ProfileEnum.Comum
-                    };
-
-                    _userService.Adicionar(user);
-                    TempData["MensagemSucesso"] = $"Usuário cadastrado com sucesso. Aproveite a plataforma!";
-
-                    _userOutService.Add(userOut);
-                    return RedirectToAction("Index", "Login");
-
                     if (userOut != null)
                     {
+                        userOut.VerificationCode();
                         string subject = "Cadastro - Gerenciador de Leitura";
                         string compose = $"Seu código de verificação é {userOut.Code}";
                         bool emailSent = _email.Send(userOut.EmailUserOut, subject, compose);
@@ -113,6 +102,9 @@ namespace API_Livros.Controllers
                         if (emailSent)
                         {
                             TempData["MensagemSucesso"] = $"O código de validação foi enviado para o seu e-mail.";
+                            //Inicia a sessão
+                            _sessionOut.StartSession(userOut);
+                            //Envia para a confirmação
                             return RedirectToAction("ConfirmUser", "Login");
                         }
                         else
@@ -135,61 +127,22 @@ namespace API_Livros.Controllers
                 return RedirectToAction("Index", "Login");
 
             }
-            /*
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    if (userOut != null)
-                    {
-                         _userCode = userOut.VerificationCode();
-                        _userOut = userOut;
-
-                        string subject = "Cadastro - Gerenciador de Leitura";
-                        string compose = $"Seu código de verificação é {_userCode}";
-                        bool emailSent = _email.Send(userOut.EmailUserOut, subject, compose);
-
-                        if (emailSent)
-                        {
-                            TempData["MensagemSucesso"] = $"O código de validação foi enviado para o seu e-mail.";
-                        }
-                        else
-                        {
-                            TempData["MensagemErro"] = $"Não foi possível enviar o e-mail com o código. Tente novamente mais tarde!";
-                            return RedirectToAction("Index", "Login");
-                        }
-                    }
-                    else
-                    {
-                        TempData["MensagemErro"] = $"Erro ao criar o seu usuário! Tente novamente mais tarde.";
-                        return RedirectToAction("Index", "Login");
-                    }
-                }
-                
-                return RedirectToAction("ConfirmUser");
-            }
-            catch (Exception err)
-            {
-
-                TempData["MensagemErro"] = $"Erro ao criar o seu usuário! Detalhes do erro: {err}";
-                return View();
-            }
-            */
         }
-        public IActionResult ConfirmUser(int id)
+        public IActionResult ConfirmUser()
         {
-            UserOutModel userOut = _userOutService.LookforId(id);
-            return View(userOut);
+            UserOutModel sessionUserOut = _sessionOut.SearchSession();
+            return View(sessionUserOut);
         }
 
         [HttpPost]
         public IActionResult ConfirmUser(UserOutModel userOut)
         {
-
             try
-            {
+            { 
+                string code = userOut.Code;
+                string verifyCode = userOut.VerifyEmail;
 
-                if (userOut.Code == userOut.VerifyEmail)
+                if (code == verifyCode)
                 {
                     UserModel user = new UserModel()
                     {
@@ -208,7 +161,7 @@ namespace API_Livros.Controllers
                 else
                 {
                     TempData["MensagemErro"] = $"Erro ao validar o código! Tente novamente mais tarde.";
-                    return View();
+                    return RedirectToAction("Index", "Login");
                 }
 
             }
@@ -218,28 +171,6 @@ namespace API_Livros.Controllers
                 TempData["MensagemErro"] = $"Erro ao validar o código! Detalhes do erro: {err}";
                 return View();
             }
-
-            /*if (userOut.Code == _userCode)
-            {
-                UserModel user = new UserModel()
-                {
-                    NameUser = _userOut.NameUserOut,
-                    LoginUser = _userOut.LoginUserOut,
-                    EmailUser = _userOut.EmailUserOut,
-                    PasswordUser = _userOut.PasswordUserOut,
-                    RegisterDateUser = DateTime.Now,
-                    ProfileUser = Enums.ProfileEnum.Comum
-                };
-
-                _userService.Adicionar(user);
-                TempData["MensagemSucesso"] = $"Usuário cadastrado com sucesso. Aproveite a plataforma!";
-                return RedirectToAction("Index", "Login");
-            }
-            else
-            {
-                TempData["MensagemErro"] = $"Erro ao validar o código! Tente novamente mais tarde.";
-                return View();
-            }*/
         }
 
         public IActionResult ResetPassword()

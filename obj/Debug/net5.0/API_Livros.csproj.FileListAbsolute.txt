@@ -165,3 +165,4 @@ C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\Login
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\ChangePassword\Index.cshtml.g.cs
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\Login\CreateUser.cshtml.g.cs
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\Login\ConfirmUser.cshtml.g.cs
+C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\Shared\Components\ConfirmUser\Default.cshtml.g.cs

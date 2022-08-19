@@ -36,7 +36,7 @@ namespace API_Livros.Models
         public string VerificationCode()
         {
             string code = Guid.NewGuid().ToString().Substring(0, 6);
-            Code = code;
+            this.Code = code;
             return code;
         }
     }

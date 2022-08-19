@@ -17,31 +17,12 @@
         </div>
     }
     <br />
-
-    <!--Formulário Redefinir Senha-->
     <div id="formContent">
-        <form asp-controller="Login" asp-action="ConfirmUser" method="post">
-            <!--Adicionando ID-->
-            <input type="hidden" asp-for="Id" />
-            <input type="text" asp-for="NameUserOut">
-
-            <input type="hidden" asp-for="LoginUserOut">
-
-            <input type="hidden" asp-for="EmailUserOut">
-
-            <input type="hidden" asp-for="PasswordUserOut">
-
-            <input type="hidden"  asp-for="ConfirmPassword">
-
-            <div>
-                <input id="login" class="form-control fadeIn second" placeholder="Código" type="text" asp-for="VerifyEmail">
-            </div>
-
-            <input type="submit" class="fadeIn fourth" value="Verificar Email" />
-        </form>
+        @await Component.InvokeAsync("ConfirmUser")
         <div id="formFooter">
             <a class="btn btn-dark btn-block" asp-controller="Login" asp-action="Index">Voltar</a>
         </div>
-
     </div>
+    
 </div>
+
