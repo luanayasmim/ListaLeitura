@@ -166,3 +166,14 @@ C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\Chang
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\Login\CreateUser.cshtml.g.cs
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\Login\ConfirmUser.cshtml.g.cs
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\Shared\Components\ConfirmUser\Default.cshtml.g.cs
+C:\Users\lylourenco\source\repos\ListaLeitura\bin\Debug\net5.0\Functions.dll
+C:\Users\lylourenco\source\repos\ListaLeitura\bin\Debug\net5.0\Gotrue.dll
+C:\Users\lylourenco\source\repos\ListaLeitura\bin\Debug\net5.0\MimeMapping.dll
+C:\Users\lylourenco\source\repos\ListaLeitura\bin\Debug\net5.0\Postgrest.dll
+C:\Users\lylourenco\source\repos\ListaLeitura\bin\Debug\net5.0\Realtime.dll
+C:\Users\lylourenco\source\repos\ListaLeitura\bin\Debug\net5.0\Supabase.dll
+C:\Users\lylourenco\source\repos\ListaLeitura\bin\Debug\net5.0\Storage.dll
+C:\Users\lylourenco\source\repos\ListaLeitura\bin\Debug\net5.0\Websocket.Client.dll
+C:\Users\lylourenco\source\repos\ListaLeitura\bin\Debug\net5.0\System.Reactive.dll
+C:\Users\lylourenco\source\repos\ListaLeitura\bin\Debug\net5.0\System.Reactive.xml
+C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\User\_BooksUser.cshtml.g.cs

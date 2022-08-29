@@ -28,4 +28,6 @@ namespace API_Livros.Data
  *  
  *  Atualizar no Banco de Dados:
  *      Update-Database -Context NomeContexto
+ *      
+ *  Extensão SUPABASE
  */

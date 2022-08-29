@@ -1,0 +1,47 @@
+﻿@model List<LivroModel>
+<!--Partial View-->
+<table id="table-books-user" class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Título</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Data de Lançamento</th>
+            <th scope="col">Número de Páginas</th>
+            <th scope="col">Status</th>
+            <th scope="col">Cadastrado em:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var book in Model)
+            {
+        <tr>
+            <th scope="row">@book.Id</th>
+            <td>@book.NomeLivro.</td>
+            <td>@book.NomeAutor</td>
+            <td>@book.DataLancamento.ToString("dd/MM/yyyy")</td>
+            <td>@book.NumPaginas</td>
+            @if (book.StatusLivro)
+            {
+                <td>Lido</td>
+            }
+            else
+            {
+                <td>Não Lido</td>
+            }
+            <td>@book.DataCadastro</td>
+        </tr>
+            }
+        }
+        else
+        {
+            <tr class="odd">
+                <td valign="top" colspan="7">
+                    Nenhum livro encontrado
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

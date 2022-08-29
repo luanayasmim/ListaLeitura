@@ -1,5 +1,6 @@
 ﻿using API_Livros.Data;
 using API_Livros.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,9 @@ namespace API_Livros.Repositorio
 
         List<UserModel> IUserService.BuscarTodos()
         {
-            return _bancoContext.Users.ToList();
+            return _bancoContext.Users
+                .Include(x => x.Books)    //Buscando os livros de cada usuário
+                .ToList();
         }
 
         public UserModel ListarPorId(int id)

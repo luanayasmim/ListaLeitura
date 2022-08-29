@@ -3,6 +3,7 @@ using API_Livros.Models;
 using API_Livros.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -13,11 +14,13 @@ namespace API_Livros.Controllers
     public class UserController : Controller
     {
         private readonly IUserService _userService;
+        private readonly ILivroRepositorio _livroRepositorio;
 
         //Construtor da classe
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, ILivroRepositorio livroRepositorio)
         {
             _userService = userService;
+            _livroRepositorio = livroRepositorio;
 
         }
 
@@ -45,6 +48,12 @@ namespace API_Livros.Controllers
             //Recebendo informações
             UserModel user = _userService.ListarPorId(id);
             return View(user);
+        }
+
+        public IActionResult ListBooksFromUserId(int id)
+        {
+            List<LivroModel> books = _livroRepositorio.BuscarTodos(id);
+            return PartialView("_BooksUser", books);
         }
 
         //Métodos POST

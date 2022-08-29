@@ -45,7 +45,7 @@
     <br />
 
 
-    <table id="tabelaLivros" class="table table-dark">
+    <table id="table-books" class="table table-dark">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -67,7 +67,7 @@
                         <th scope="row">@livro.Id</th>
                         <td>@livro.NomeLivro</td>
                         <td>@livro.NomeAutor</td>
-                        <td>@livro.DataLancamento</td>
+                        <td>@livro.DataLancamento.ToString("dd/MM/yyyy")</td>
                         <td>@livro.NumPaginas</td>
                         @if (livro.StatusLivro)
                         {
@@ -88,7 +88,14 @@
                     </tr>
                 }
             }
-
+            else
+            {
+                <tr class="odd">
+                    <td valign="top" colspan="7">
+                        Nenhum livro encontrado
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>

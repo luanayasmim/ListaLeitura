@@ -67,6 +67,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.17, )"
+            },
+            "supabase-csharp": {
+              "target": "Package",
+              "version": "[0.5.1, )"
             }
           },
           "imports": [

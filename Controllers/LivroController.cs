@@ -64,7 +64,7 @@ namespace API_Livros.Controllers
                     TempData["MensagemSucesso"] = @"Livro adicionado com sucesso \(￣︶￣*\))";
                     return RedirectToAction("Index");
                 }
-                return View(p_livro);
+                return Ok(p_livro);
             }
             catch (System.Exception error)
             {
@@ -94,7 +94,7 @@ namespace API_Livros.Controllers
                 return RedirectToAction("Index");
             }
         }
-
+        [HttpPost]
         public IActionResult Apagar(int id)
         {
             try

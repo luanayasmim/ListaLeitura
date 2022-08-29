@@ -6,7 +6,29 @@ $('#close-alert').click(function () {
 
 //Configurando tabela
 $(document).ready(function () {
-    $('#tabelaLivros').DataTable({
+
+    getDatatable('#table-books');
+    getDatatable('#table-users');
+    //Modal
+    $('.btn-total-livros').click(function () {
+        var userId = $(this).attr("user-id");
+        console.log(userId);
+
+        //Ajax
+        $.ajax({
+            type: 'GET',
+            url: '/User/ListBooksFromUserId/' + userId,
+            success: function (result) {
+                $('#BooksList').html(result);
+                $('#modalBooksUser').modal();
+                getDatatable('#table-books-user');
+            }
+        });
+    });
+});
+
+function getDatatable(id) {
+    $(id).DataTable({
         "ordering": true,
         "paging": true,
         "searching": true,
@@ -34,4 +56,4 @@ $(document).ready(function () {
             }
         }
     });
-});
+}

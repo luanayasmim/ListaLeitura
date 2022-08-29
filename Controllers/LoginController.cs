@@ -137,7 +137,7 @@ namespace API_Livros.Controllers
         [HttpPost]
         public IActionResult ConfirmUser(UserOutModel userOut)
         {
-            try
+            try 
             { 
                 string code = userOut.Code;
                 string verifyCode = userOut.VerifyEmail;
