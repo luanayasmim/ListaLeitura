@@ -156,7 +156,6 @@ C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\User\
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\User\Criar.cshtml.g.cs
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\User\Editar.cshtml.g.cs
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\User\ApagarConfirmacao.cshtml.g.cs
-C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\User\Importar.cshtml.g.cs
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\Login\Index.cshtml.g.cs
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\Shared\_LayoutLogin.cshtml.g.cs
 C:\Users\lylourenco\source\repos\ListaLeitura\obj\Debug\net5.0\Razor\Views\Shared\Components\Menu\Default.cshtml.g.cs
