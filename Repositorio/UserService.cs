@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace API_Livros.Repositorio
 {
@@ -35,7 +34,7 @@ namespace API_Livros.Repositorio
 
         public UserModel ListarPorId(int id)
         {
-            return _bancoContext.Users.FirstOrDefault(x=>x.UserModelId==id);
+            return _bancoContext.Users.FirstOrDefault(x => x.UserModelId == id);
         }
 
         public UserModel Adicionar(UserModel user)

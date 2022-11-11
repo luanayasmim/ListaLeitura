@@ -1,5 +1,3 @@
-using System;
-
 /*
  * Consiste na essência das regras de negócio, envolvendo as classes do sistema e o acesso aos dados
  

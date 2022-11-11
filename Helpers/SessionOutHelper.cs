@@ -1,10 +1,6 @@
 ﻿using API_Livros.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API_Livros.Helpers
 {
@@ -19,7 +15,7 @@ namespace API_Livros.Helpers
         public UserOutModel SearchSession()
         {
             string sessionUserOut = _httpContext.HttpContext.Session.GetString("UserOutAccess");
-            
+
             if (string.IsNullOrEmpty(sessionUserOut)) return null;
 
             return JsonConvert.DeserializeObject<UserOutModel>(sessionUserOut);

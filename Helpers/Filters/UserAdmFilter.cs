@@ -1,10 +1,10 @@
-﻿using API_Livros.Models;
+﻿using API_Livros.Enums;
+using API_Livros.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;
 using Newtonsoft.Json;
-using API_Livros.Enums;
 
 namespace API_Livros.Helpers.Filters
 {
@@ -16,7 +16,7 @@ namespace API_Livros.Helpers.Filters
 
             if (string.IsNullOrEmpty(sessionUser))
             {
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary { {"controller", "Login" }, {"action", "Index" } });
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Login" }, { "action", "Index" } });
             }
             else
             {

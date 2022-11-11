@@ -3,7 +3,6 @@ using API_Livros.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace API_Livros.Repositorio
 {
@@ -17,12 +16,12 @@ namespace API_Livros.Repositorio
 
         public List<LivroModel> BuscarTodos(int userId)
         {
-            return _bancoContext.Livros.Where(x=>x.UserId == userId).ToList();
+            return _bancoContext.Livros.Where(x => x.UserId == userId).ToList();
         }
 
         public LivroModel ListarPorId(int id)
         {
-            return _bancoContext.Livros.FirstOrDefault(x=>x.Id==id);
+            return _bancoContext.Livros.FirstOrDefault(x => x.Id == id);
         }
 
         public LivroModel Adicionar(LivroModel livro)

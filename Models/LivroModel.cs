@@ -1,6 +1,4 @@
-﻿using Postgrest.Attributes;
-using Supabase;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace API_Livros.Models
@@ -13,7 +11,7 @@ namespace API_Livros.Models
 
         //[Column("book_name")]
         //Utilizando o DataAnnotations para fazer validações
-        [Required(ErrorMessage ="Informe o título!")]
+        [Required(ErrorMessage = "Informe o título!")]
         public string NomeLivro { get; set; }
 
         //[Column("author")]

@@ -1,7 +1,6 @@
 ﻿using API_Livros.Helpers.Filters;
 using API_Livros.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
 /*

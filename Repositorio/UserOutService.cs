@@ -1,9 +1,6 @@
 ﻿using API_Livros.Data;
 using API_Livros.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace API_Livros.Repositorio
 {

@@ -15,7 +15,7 @@ namespace API_Livros.Helpers.Filters
 
             if (string.IsNullOrEmpty(sessionUser))
             {
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary { {"controller", "Login" }, {"action", "Index" } });
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Login" }, { "action", "Index" } });
             }
             else
             {

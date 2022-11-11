@@ -1,13 +1,8 @@
-﻿using API_Livros.Models;
+﻿using API_Livros.Helpers;
+using API_Livros.Models;
+using API_Livros.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.IO;
-using System.Threading.Tasks;
-using API_Livros.Repositorio;
-using API_Livros.Helpers;
 
 namespace API_Livros.Controllers
 {
@@ -137,8 +132,8 @@ namespace API_Livros.Controllers
         [HttpPost]
         public IActionResult ConfirmUser(UserOutModel userOut)
         {
-            try 
-            { 
+            try
+            {
                 string code = userOut.Code;
                 string verifyCode = userOut.VerifyEmail;
 

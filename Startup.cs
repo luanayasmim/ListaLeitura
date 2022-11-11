@@ -36,12 +36,12 @@ namespace API_Livros
             services.AddScoped<ISessionHelper, SessionHelper>();
             services.AddScoped<ISessionOutHelper, SessionOutHelper>();
             services.AddScoped<ISendEmail, SendEmail>();
-            services.AddSession(o => 
+            services.AddSession(o =>
             {
                 o.Cookie.HttpOnly = true;
                 o.Cookie.IsEssential = true;
             });
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

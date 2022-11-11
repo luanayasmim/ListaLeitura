@@ -1,12 +1,8 @@
 ﻿using API_Livros.Enums;
 using API_Livros.Helpers;
-using Postgrest.Attributes;
-using Supabase;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API_Livros.Models
 {
@@ -17,24 +13,24 @@ namespace API_Livros.Models
         public int UserModelId { get; set; } // Chave primária
 
         //[Column("user_name")]
-        //[Required(ErrorMessage ="Informe o nome!")]
+        [Required(ErrorMessage = "Informe o nome!")]
         public string NameUser { get; set; }
 
         //[Column("login")]
-        //[Required(ErrorMessage = "Informe o Usuário!")]
+        [Required(ErrorMessage = "Informe o Usuário!")]
         public string LoginUser { get; set; }
 
         //[Column("user_email")]
-        //[Required(ErrorMessage = "Informe o Email!")]
+        [Required(ErrorMessage = "Informe o Email!")]
         //[EmailAddress(ErrorMessage ="O email informado não é válido!")]
         public string EmailUser { get; set; }
 
         //[Column("user_profile")]
-        //Required(ErrorMessage = "Informe o Perfil de Acesso!")]
+        [Required(ErrorMessage = "Informe o Perfil de Acesso!")]
         public ProfileEnum? ProfileUser { get; set; }
 
         //[Column("password")]
-        //[Required(ErrorMessage = "Informe a senha!")]
+        [Required(ErrorMessage = "Informe a senha!")]
         public string PasswordUser { get; set; }
 
         //[Column("register_date")]
@@ -60,7 +56,7 @@ namespace API_Livros.Models
         {
             PasswordUser = PasswordUser.DoHash(); //Método de extensão com o uso do this
         }
-        
+
         public string DoNewPassword()
         {
             string newPassword = Guid.NewGuid().ToString().Substring(0, 8);

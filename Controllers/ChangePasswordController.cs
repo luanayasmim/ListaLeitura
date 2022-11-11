@@ -3,9 +3,6 @@ using API_Livros.Models;
 using API_Livros.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API_Livros.Controllers
 {

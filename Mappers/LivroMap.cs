@@ -8,7 +8,7 @@ namespace API_Livros.Mappers
 {
     public sealed class LivroMap : ClassMap<LivroModel>, IEntityTypeConfiguration<LivroModel>
     {
-        public LivroMap() 
+        public LivroMap()
         {
             //Map(m => m.Id).Name("Id");
             Map(m => m.NomeLivro).Name("NomeLivro");

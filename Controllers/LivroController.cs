@@ -64,7 +64,7 @@ namespace API_Livros.Controllers
                     TempData["MensagemSucesso"] = @"Livro adicionado com sucesso \(￣︶￣*\))";
                     return RedirectToAction("Index");
                 }
-                return Ok(p_livro);
+                return View("Criar");
             }
             catch (System.Exception error)
             {
@@ -94,7 +94,7 @@ namespace API_Livros.Controllers
                 return RedirectToAction("Index");
             }
         }
-        [HttpPost]
+        //[HttpPost]
         public IActionResult Apagar(int id)
         {
             try
@@ -147,7 +147,7 @@ namespace API_Livros.Controllers
         //Exportar
         public IActionResult Exportar()
         {
-            string path = @"C:\Users\lylourenco\Downloads\livroExportado.csv";
+            string path = @"C:\Users\Luana Yasmim\Downloads\livroExportado.csv";
             _csvParser.WriteCSV(path);
             return RedirectToAction("Index");
         }

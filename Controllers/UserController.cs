@@ -4,8 +4,6 @@ using API_Livros.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace API_Livros.Controllers
 {
@@ -92,7 +90,7 @@ namespace API_Livros.Controllers
                         LoginUser = user.LoginUser,
                         EmailUser = user.EmailUser,
                         ProfileUser = user.ProfileUser,
-                        PasswordUser= user.PasswordUser,
+                        PasswordUser = user.PasswordUser,
                         RegisterDateUser = user.RegisterDateUser,
                         UpdateDateUser = DateTime.Now
                     };

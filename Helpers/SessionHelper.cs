@@ -1,10 +1,6 @@
 ﻿using API_Livros.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API_Livros.Helpers
 {
@@ -29,7 +25,7 @@ namespace API_Livros.Helpers
         {
             string SessionUser = _httpContext.HttpContext.Session.GetString("sessionUser");
 
-            if (string.IsNullOrEmpty(SessionUser)) 
+            if (string.IsNullOrEmpty(SessionUser))
                 return null;
 
             return JsonConvert.DeserializeObject<UserModel>(SessionUser);
